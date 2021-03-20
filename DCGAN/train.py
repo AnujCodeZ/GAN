@@ -40,7 +40,7 @@ transform = transforms.Compose([
     transforms.Normalize((0.5, ), (0.5, ))
 ])
 
-dataset = datasets.MNIST(root='../data/celeb_dataset', transform=transform, download=True)
+dataset = datasets.ImageFolder(root='../data/celeb_dataset', transform=transform)
 loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
 opt_disc = optim.Adam(disc.parameters(), lr=lr, betas=(0.5, 0.999))
