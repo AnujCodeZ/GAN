@@ -87,15 +87,14 @@ for epoch in range(num_epochs):
             )
 
             with torch.no_grad():
-                fake = gen(fixed_noise).reshape(-1, 1, 28, 28)
-                data = real.reshape(-1, 1, 28, 28)
-                img_grid_fake = torchvision.utils.make_grid(fake, normalize=True)
-                img_grid_real = torchvision.utils.make_grid(data, normalize=True)
+                fake = gen(fixed_noise)
+                img_grid_fake = torchvision.utils.make_grid(fake[:32], normalize=True)
+                img_grid_real = torchvision.utils.make_grid(real[:32], normalize=True)
 
                 writer_fake.add_image(
-                    "Mnist Fake Images", img_grid_fake, global_step=step
+                    "Fake Images", img_grid_fake, global_step=step
                 )
                 writer_real.add_image(
-                    "Mnist Real Images", img_grid_real, global_step=step
+                    "Real Images", img_grid_real, global_step=step
                 )
                 step += 1
