@@ -48,7 +48,7 @@ transform = transforms.Compose([
     transforms.Normalize((0.5, ), (0.5, ))
 ])
 
-dataset = datasets.MNIST(root='data/', transform=transform, download=False)
+dataset = datasets.MNIST(root='../data/', transform=transform, download=True)
 loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
 opt_disc = optim.Adam(disc.parameters(), lr=lr)
