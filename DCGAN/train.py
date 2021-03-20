@@ -29,16 +29,11 @@ transform = transforms.Compose([
 ])
 
 
-disc = Discriminator(img_dim).to(device)
-gen = Generator(z_dim, img_dim)
+disc = Discriminator(channels_img, features_d).to(device)
+gen = Generator(z_dim, channels_img, features_g)
 initialize_weights(disc)
 initialize_weights(gen)
 fixed_noise = torch.randn(32, z_dim, 1, 1).to(device)
-
-transform = transforms.Compose([
-    transforms.ToTensor(),
-    transforms.Normalize((0.5, ), (0.5, ))
-])
 
 dataset = datasets.ImageFolder(root='../data/celeb_dataset', transform=transform)
 loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
